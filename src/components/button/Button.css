@@ -1,0 +1,8 @@
+.custom_button {
+    text-shadow: black 2px 2px 10px;
+    font-weight: bolder;
+}
+
+.custom_button:hover {
+    box-shadow: white 2px 2px 20px 5px;
+}

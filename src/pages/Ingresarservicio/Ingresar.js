@@ -1,14 +1,13 @@
-import React from 'react'
+import React from "react";
 import NavbarCustom from "../../components/navbar/Navbar";
 import "./Ingresar.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-
 export default function Ingresar() {
-    return (
-        <section>
-        <NavbarCustom title="Ingresar Servicio" />
-        <aside>
+  return (
+    <section>
+      <NavbarCustom title="Ingresar Servicio" />
+      <div className="main_ingresar">
         <Form inline>
           <FormGroup className="form">
             <Label for="exampleSearch">Id Tecnico</Label>
@@ -64,10 +63,9 @@ export default function Ingresar() {
               placeholder="time placeholder"
             />
           </FormGroup>
-          <Button>Ingresar servicio</Button>
+          <Button className="custom_button">Ingresar servicio</Button>
         </Form>
-      </aside>
-        
-      </section>
-    )
+      </div>
+    </section>
+  );
 }

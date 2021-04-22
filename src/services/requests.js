@@ -8,5 +8,7 @@ export async function get(idtecnico, numeroSemana) {
 }
 
 export function post() {
+  //  const url = `${API_URI}/registrar-servicio?idTecnico=${idtecnico}&fechaInicio=${fe}`
+
     
 }

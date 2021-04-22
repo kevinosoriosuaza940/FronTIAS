@@ -6,7 +6,7 @@ import { get } from "../../services/requests";
 
 export default function Consultar() {
   const [idtecnico, setIdTecnico] = useState("");
-  const [numeroSemana, setNumeroSemana] = useState(1);
+  const [numeroSemana, setNumeroSemana] = useState();
   const [reporteHoras, setReporteHoras] = useState({});
   const isDisabled = idtecnico.length > 0 && numeroSemana > 0;
 

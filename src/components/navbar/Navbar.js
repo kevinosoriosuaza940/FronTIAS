@@ -1,23 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import { Navbar, NavbarBrand, NavbarText } from "reactstrap";
 import "./Navbar.css";
-import logo from "../../assets/logo.jpeg";
 
 const Example = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
   const { title } = props;
 
   return (
     <div>
       <Navbar className="navbar" color="dark" light expand="md">
-        <NavbarBrand className="img"   href="/">
-          <div className='imagen'>
-          </div>
+        <NavbarBrand className="img">
+          <Link to="/">
+            <div className="imagen"></div>
+          </Link>
         </NavbarBrand>
-        <NavbarText >
-          <span className='title'>
-            {title}
-          </span>  
+        <NavbarText>
+          <span className="title">{title}</span>
         </NavbarText>
       </Navbar>
     </div>

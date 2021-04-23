@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import NavbarCustom from "../../components/navbar/Navbar";
 import "./Consultar.css";
 import { Button, Form, FormGroup, Label, Input, Table } from "reactstrap";
@@ -13,6 +13,7 @@ export default function Consultar() {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     const response = await get(idtecnico, numeroSemana);
+    console.log(response.status)
     const data = await response.json();
     setReporteHoras(data[0]);
     console.log(idtecnico, numeroSemana);
@@ -32,11 +33,11 @@ export default function Consultar() {
       <NavbarCustom title="Consultar Horas" />
       <div className="main_consultar">
         <aside>
-          <Form inline onSubmit={handleSubmit}>
-            <FormGroup className="form">
-              <Label className="text-start">Id Tecnico</Label>
+          <Form inline onSubmit={handleSubmit} className="text-light">
+            <FormGroup className="form ">
+              <Label>Id Tecnico</Label>
               <Input
-                type="text"
+                type="text "
                 name="idTecnico"
                 placeholder="Id tecnico"
                 onChange={(e) => handleInput(e)}
@@ -44,7 +45,7 @@ export default function Consultar() {
               />
             </FormGroup>
             <FormGroup>
-              <Label>Number semana </Label>
+              <Label className="text-wrap">Number semana </Label>
               <Input
                 type="number"
                 name="numeroSemana"
@@ -64,11 +65,11 @@ export default function Consultar() {
 
         {reporteHoras ? (
           <article>
-            <Table responsive>
+            <Table responsive  className="text-start text-light" >
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Tipo Hora</th>
+                  <th >Tipo Hora</th>
                   <th>Cantidad de horas</th>
                 </tr>
               </thead>

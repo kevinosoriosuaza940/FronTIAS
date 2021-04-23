@@ -1,70 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import NavbarCustom from "../../components/navbar/Navbar";
 import "./Ingresar.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { post } from "../../services/requests";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import swal from "sweetalert";
 
 export default function Ingresar() {
-  const [idtecnico, setIdTecnico] = useState();
-  const [idservicio, setIdServicio] = useState();
-  const [fechainicio, setFechainicio] = useState("");
-  const [fechafin, setFechafin] = useState("");
-  const [horainicio, setHorainicio] = useState("");
-  const [horafin, setHorafin] = useState("");
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [idtecnico, setIdTecnico] = useState("");
+  const [idservicio, setIdServicio] = useState("");
+  const [fechainicio, setFechainicio] = useState();
+  const [fechafin, setFechafin] = useState();
+  const isDisable =
+    idtecnico.length > 0 && idservicio.length > 0 && fechafin > fechainicio;
 
-  let fechahorainicio = `${fechainicio} ${horainicio}`;
-  let fechahorafin = `${fechafin} ${horafin}`;
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = post(
+    let body = {
       idtecnico,
+      fechainicio: formatDate(fechainicio),
+      fechafin: formatDate(fechafin),
       idservicio,
-      fechahorainicio,
-      fechahorafin
-    );
-    let obj = {
-      idtecnico,
-      idservicio,
-      fechahorainicio,
-      fechahorafin
-    }
-      console.log(obj)
+    };
+    const response = await post(body);
+    response.status > 400
+      ? swal("Error", "No se puede guardar el registro", "error")
+      : swal("Correcto", "Registro guardaro correctamente", "success");
+    const data = await response.json();
+    console.log(data);
   };
 
-  const validacionFormulario = (e) => {
-
-    if (
-      idtecnico !== "" &&
-      idtecnico !== null &&
-      idservicio !== "" &&
-      idservicio !== null &&
-      fechainicio !== "" &&
-      fechainicio !== null &&
-      fechafin !== "" &&
-      fechafin !== null &&
-      horainicio !== "" &&
-      horainicio !== null &&
-      horafin !== "" &&
-      horafin !== null
-    ) {
-      setIsDisabled(true);
-    } else if (
-      idtecnico !== "" ||
-      idtecnico !== null ||
-      idservicio !== "" ||
-      idservicio !== null ||
-      fechainicio !== "" ||
-      fechainicio !== null ||
-      fechafin !== "" ||
-      fechafin !== null ||
-      horainicio !== "" ||
-      horainicio !== null ||
-      horafin !== "" ||
-      horafin !== null
-    ) {
-      setIsDisabled(false);
+  const formatDate = (date) => {
+    try {
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const day = date.getDate();
+      const hour = date.getHours();
+      return `${year}-${month}-${day} ${hour}:00`;
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -74,26 +49,13 @@ export default function Ingresar() {
   const handleIdServicioChange = (e) => {
     setIdServicio(e.target.value);
   };
-  const handleFechaInicioChange = (e) => {
-    setFechainicio(e.target.value);
-  };
-  const handleFechaFinChange = (e) => {
-    setFechafin(e.target.value);
-  };
-  const handleHoraInicioChange = (e) => {
-    setHorainicio(e.target.value);
-  };
-  const handleHoraFinChange = (e) => {
-    setHorafin(e.target.value);
-  };
 
   return (
     <section>
       <NavbarCustom title="Ingresar Servicio" />
       <div className="main_ingresar">
-        <Form inline onSubmit={handleSubmit} onChange={validacionFormulario}>
-          <FormGroup className="form">
-            <Label></Label>
+        <Form inline onSubmit={handleSubmit}>
+          <FormGroup className="form mb-2">
             <Input
               type="search"
               name="search"
@@ -103,9 +65,7 @@ export default function Ingresar() {
               // value={idtecnico}
             />
           </FormGroup>
-          <FormGroup className="form">
-            <Label></Label>
-
+          <FormGroup className="form mb-2">
             <Input
               type="search"
               name="search"
@@ -114,54 +74,31 @@ export default function Ingresar() {
               // value={idservicio}
             />
           </FormGroup>
-          <FormGroup>
-            <Label></Label>
-            <Input
-              type="date"
-              name="date"
-              id="exampleDate"
-              placeholder="date placeholder"
-              onChange={handleFechaInicioChange}
-              // value={fechainicio}
+          <FormGroup className="form mb-2">
+            <DatePicker
+              placeholderText="Fecha inicial"
+              selected={fechainicio}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={60}
+              timeCaption="time"
+              dateFormat="yyyy-MM-dd HH:mm"
+              onChange={(date) => setFechainicio(date)}
             />
           </FormGroup>
-          <FormGroup>
-            <Label></Label>
-            <Input
-              type="time"
-              name="time"
-              id="exampleTime"
-              placeholder="time placeholder"
-              onChange={handleHoraInicioChange}
-              // value={fechafin}
+          <FormGroup className="form mb-2">
+            <DatePicker
+              placeholderText="Fecha fin"
+              selected={fechafin}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={60}
+              timeCaption="time"
+              dateFormat="yyyy-MM-dd HH:mm"
+              onChange={(date) => setFechafin(date)}
             />
           </FormGroup>
-          <FormGroup>
-            <Label></Label>
-            <Input
-              type="date"
-              name="date"
-              id="exampleDate"
-              placeholder="date placeholder"
-              onChange={handleFechaFinChange}
-              // value={horainicio}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label></Label>
-            <Input
-              type="time"
-              name="time"
-              id="exampleTime"
-              placeholder="time placeholder"
-              onChange={handleHoraFinChange}
-              // value={horafin}
-            />
-          </FormGroup>
-          <Button
-            className="custom_button"
-            // disabled={isDisabled}
-          >
+          <Button className="custom_button" disabled={!isDisable}>
             Ingresar servicio
           </Button>
         </Form>

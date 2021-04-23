@@ -16,7 +16,6 @@ export default function Consultar() {
     console.log(response.status)
     const data = await response.json();
     setReporteHoras(data[0]);
-    console.log(idtecnico, numeroSemana);
   };
 
   const handleInput = (e) => {
@@ -77,47 +76,47 @@ export default function Consultar() {
                 <tr>
                   <th scope="row">1</th>
                   <td>Id tecnico</td>
-                  <td>{reporteHoras.id_tecnico}</td>
+                  <td>{reporteHoras.idtecnico}</td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
                   <td>Numero semana</td>
-                  <td>{reporteHoras.numero_semana}</td>
+                  <td>{reporteHoras.numerosemana}</td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
                   <td>Horas normales</td>
-                  <td>{reporteHoras.horas_normales}</td>
+                  <td>{reporteHoras.horasnormales}</td>
                 </tr>
                 <tr>
                   <th scope="row">4</th>
                   <td>Horas nocturnas</td>
-                  <td>{reporteHoras.horas_nocturnas}</td>
+                  <td>{reporteHoras.horasnocturas}</td>
                 </tr>
                 <tr>
                   <th scope="row">5</th>
                   <td>Horas normales extras</td>
-                  <td>{reporteHoras.horas_normale_sextras}</td>
+                  <td>{reporteHoras.horasnormalesextra}</td>
                 </tr>
                 <tr>
                   <th scope="row">6</th>
                   <td>Horas dominicales</td>
-                  <td>{reporteHoras.horas_dominicales}</td>
+                  <td>{reporteHoras.horasdomingo}</td>
                 </tr>
                 <tr>
                   <th scope="row">7</th>
                   <td>Horas nocturnas extras</td>
-                  <td>{reporteHoras.horas_nocturnas_extras}</td>
+                  <td>{reporteHoras.horasnocturnasextra}</td>
                 </tr>
                 <tr>
                   <th scope="row">8</th>
                   <td>Horas dominicales extras</td>
-                  <td>{reporteHoras.horas_dominicales_extras}</td>
+                  <td>{reporteHoras.getHorasdomingoextra}</td>
                 </tr>
                 <tr>
                   <th scope="row">9</th>
                   <td>total_horas</td>
-                  <td>{reporteHoras.total_horas}</td>
+                  <td>{reporteHoras.totalhoras}</td>
                 </tr>
               </tbody>
             </Table>

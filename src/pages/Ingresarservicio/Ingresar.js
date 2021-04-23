@@ -20,15 +20,13 @@ export default function Ingresar() {
     let body = {
       idtecnico,
       fechainicio: formatDate(fechainicio),
-      fechafin: formatDate(fechafin),
+      fechafinal: formatDate(fechafin),
       idservicio,
     };
     const response = await post(body);
     response.status > 400
       ? swal("Error", "No se puede guardar el registro", "error")
       : swal("Correcto", "Registro guardaro correctamente", "success");
-    const data = await response.json();
-    console.log(data);
   };
 
   const formatDate = (date) => {

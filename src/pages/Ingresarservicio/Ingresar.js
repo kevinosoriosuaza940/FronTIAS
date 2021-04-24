@@ -35,7 +35,7 @@ export default function Ingresar() {
       const month = date.getMonth();
       const day = date.getDate();
       const hour = date.getHours();
-      return `${year}-${month}-${day} ${hour}:00`;
+      return `${year}-${month}-${day} ${hour}:00:00`;
     } catch (err) {
       console.error(err);
     }

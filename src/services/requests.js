@@ -1,3 +1,4 @@
+import swal from 'sweetalert'
 import { API_URI } from './config'
 
 export async function get(idtecnico, numeroSemana) {
@@ -6,6 +7,7 @@ export async function get(idtecnico, numeroSemana) {
       const response = await fetch(url, {method:'GET'})
       return response
     } catch (error) {
+      swal("Error","No se puede conectar al servidor","error")
       console.log(error)
     }
 
@@ -23,6 +25,18 @@ export async function post(body) {
       body: JSON.stringify(body)
     })
     return response
+  } catch (error) {
+    swal("Error","No se puede conectar al servidor","error")
+    console.log(error)
+  }
+}
+
+export async function getServicios(){
+  const url = `${API_URI}/servicios`
+  try {
+    const response =await fetch(url,{method:'GET'})
+    return response
+    
   } catch (error) {
     console.log(error)
   }

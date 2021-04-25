@@ -1,6 +1,6 @@
 .title{
     color: white;
-    margin-left: 520px;
+    font-size: 32px;
     text-align: center;
     text-transform: uppercase;
     font-weight: bolder;
@@ -12,7 +12,10 @@
     background:url(../../assets/logo.jpeg);
     background-repeat: no-repeat;
     background-size: contain;
-    width: 32px;
-    height: 32px;
+    width: 64px;
+    height: 64px;
+    margin-left: 20%;
+    margin-right: 20px;
+    
 
 }

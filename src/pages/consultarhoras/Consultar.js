@@ -12,10 +12,16 @@ export default function Consultar() {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    const response = await get(idtecnico, numeroSemana);
-    console.log(response.status)
-    const data = await response.json();
-    setReporteHoras(data[0]);
+    try {
+      const response = await get(idtecnico, numeroSemana);
+      console.log(response.status)
+      const data = await response.json();
+      setReporteHoras(data[0]);
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
   };
 
   const handleInput = (e) => {
@@ -62,9 +68,9 @@ export default function Consultar() {
           </Form>
         </aside>
 
-        {reporteHoras ? (
-          <article>
-            <Table responsive  className="text-start text-light" >
+        {reporteHoras.idtecnico ? (
+          
+            <Table className="text-start text-light" >
               <thead>
                 <tr>
                   <th>#</th>
@@ -120,7 +126,7 @@ export default function Consultar() {
                 </tr>
               </tbody>
             </Table>
-          </article>
+         
         ) : (
           <article>
             <div>

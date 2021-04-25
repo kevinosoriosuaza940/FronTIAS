@@ -6,12 +6,7 @@ import { post, getServicios } from "../../services/requests";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import swal from "sweetalert";
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
+
 
 export default function Ingresar() {
   const [idtecnico, setIdTecnico] = useState("");
@@ -109,7 +104,7 @@ export default function Ingresar() {
           </FormGroup>
           <FormGroup className="form mb-2">
             <select name="servicios" id="servicios" onChange={handleIdServicioChange} className="form-select">
-              <option value="" disabled selected hidden>Id tecnico</option>
+              <option value="" disabled selected hidden>Tipo servicio</option>
               {servicios.map((servicio)=>(
             
                 <option value={servicio.idservicio} key={servicio.idservicio}>

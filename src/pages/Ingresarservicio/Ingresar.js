@@ -14,6 +14,7 @@ export default function Ingresar() {
   const [fechainicio, setFechainicio] = useState();
   const [fechafin, setFechafin] = useState();
   const [servicios, setServicios] = useState([]);
+
   const isDisable =
     idtecnico.length > 0 && idservicio.length > 0 && fechafin > fechainicio;
 
@@ -30,6 +31,7 @@ export default function Ingresar() {
       console.log(error);
     }
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,7 +87,6 @@ export default function Ingresar() {
 
   const handleIdServicioChange = (e) => {
     setIdServicio(e.target.value);
-    console.log(e.target.value);
   };
 
   return (

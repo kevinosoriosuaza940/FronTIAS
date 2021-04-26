@@ -8,10 +8,11 @@ export default function Consultar() {
   const [idtecnico, setIdTecnico] = useState("");
   const [numeroSemana, setNumeroSemana] = useState();
   const [reporteHoras, setReporteHoras] = useState({});
+
   const isDisabled = idtecnico.length > 0 && numeroSemana > 0;
 
-  const handleSubmit = async (evt) => {
-    evt.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       const response = await get(idtecnico, numeroSemana);
       console.log(response.status)

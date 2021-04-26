@@ -4,7 +4,8 @@ import { API_URI } from './config'
 export async function get(idtecnico, numeroSemana) {
     const url = `${API_URI}/results?idtecnico=${idtecnico}&numerosemana=${numeroSemana}`
     try {
-      const response = await fetch(url, {method:'GET'})
+      const response = await fetch(url, {
+        method:'GET'})
       return response
     } catch (error) {
       swal("Error","No se puede conectar al servidor","error")

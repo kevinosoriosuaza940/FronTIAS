@@ -5,9 +5,11 @@ import { useHistory } from 'react-router-dom';
 
 export default function CustomButton({ title, color, route }){
     const history = useHistory()
+
     const redirectTo = () => {
         history.push(route)
     }
+    
     return (
         <div>
             <Button

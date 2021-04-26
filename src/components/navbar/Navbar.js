@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Navbar, NavbarBrand, NavbarText } from "reactstrap";
 import "./Navbar.css";
 
-const Example = (props) => {
+const CustomNavbar = (props) => {
   const { title } = props;
 
   return (
@@ -22,4 +22,4 @@ const Example = (props) => {
   );
 };
 
-export default Example;
+export default CustomNavbar;
